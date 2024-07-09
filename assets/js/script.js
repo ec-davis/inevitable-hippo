@@ -24,13 +24,8 @@ function renderTaskList() {}
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
   event.preventDefault();
-  const newTask = initTaskObject(
-    taskTitleInput.val(),
-    taskDueDateInput.val(),
-    taskDescriptionInput.val(),
-    taskStatusInput.val()
-  );
-  console.log(newTask);
+  addTask();
+
   addTaskModal.modal("hide");
 }
 
