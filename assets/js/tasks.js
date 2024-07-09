@@ -2,6 +2,12 @@
 const STORED_NEXT_ID_NAME = "nextId";
 const STORED_TASKS_NAME = "STORED_TASKS";
 
+const STATUS = {
+  TODO: "to-do",
+  WIP: "in-progress",
+  DONE: "done",
+};
+
 // FUNCTIONS
 
 ///////////////////////////
@@ -87,4 +93,20 @@ function addTask() {
     taskStatusInput.val()
   );
   storeTask(task);
+  setStoredTaskStatus(6, STATUS.DONE);
+}
+
+/////////////////////////
+// TASK Status
+
+// finds a task in storage and updates its status
+function setStoredTaskStatus(taskId, status) {
+  const storedTasks = getTasksFromStorage();
+  for (task of storedTasks) {
+    if (task.taskId === taskId) {
+      task.status = status;
+      break;
+    }
+  }
+  setTasksInStorage(storedTasks);
 }
