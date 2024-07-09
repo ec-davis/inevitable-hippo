@@ -22,9 +22,38 @@
   </header>
   <div class="container">
     <div class="text-center mb-5">
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTaskModal" id="add-task-btn">Add Task</button>
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
+      <div class="modal" tabindex="-1" id="addTaskModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Task</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body container">
+              <div class="row">
+                <div class="col-5">Task title</div>
+                <div class="col-5">Due Date</div>
+                <div class="col-5"><input type="text" name="taskTitleInput" id="taskTitleInput" value="Tasky Title"></div>
+                <!-- TODO remove default -->
+                <div class="col-5"><input type="text" name="taskDueDateInput" id="taskDueDateInput" value="07/17/2024"></div>
+                <!-- TODO remove default -->
+                <div class="col-5"><input type="text" name="taskStatus" id="taskStatusInput" value="to-do"></div>
+                <!-- TODO remove default -->
+                <div class="col-10">Description</div>
+                <div class="col-10"><textarea name="taskDescriptionInput" cols="44"
+                    id="taskDescriptionInput">Tasky Description</textarea></div> <!-- TODO remove default -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveTaskBtn">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
         <div id="to-do" class="card border-light mb-3 lane flex-grow-1">
