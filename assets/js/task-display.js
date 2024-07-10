@@ -21,7 +21,7 @@ function appendTaskToColumn(task, updatedTaskListArray) {
 
 // creates the task card HTML element
 function assembleTaskCard(task) {
-  const taskCard = $("<div>")
+  const taskCard = $(`<div id="${task.elementId}">`)
     .addClass("task-card alert draggable") //left out: card
     .attr("data-task-id", task.id);
   const cardHeader = $("<div>").addClass("card-header h4").text(task.title);
@@ -31,11 +31,16 @@ function assembleTaskCard(task) {
   const cardDeleteBtn = $("<button>")
     .addClass("btn btn-danger delete")
     .text("Delete")
-    .attr("data-task-id", task.id);
+    .attr("data-taskId", task.taskId);
   cardDeleteBtn.on("click", handleDeleteTask);
 
   cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
   taskCard.append(cardHeader, cardBody);
   //setUrgencyClass(task, taskCard);
+  taskCard.draggable({
+    zIndex: 200,
+    helper: "clone",
+  });
+  taskCard.on("drop", handleDrop);
   return taskCard;
 }

@@ -60,6 +60,36 @@ function getTasksFromStorage() {
 function setTasksInStorage(taskArray) {
   localStorage.setItem(STORED_TASKS_NAME, JSON.stringify(taskArray));
 }
+// GETTER
+function getTaskFromStorageById(taskId) {
+  const storedTasks = getTasksFromStorage();
+  for (task of storedTasks) {
+    if (task.elementId === taskId) {
+      return task;
+    }
+  }
+}
+
+// DELETE
+function deleteTaskFromStorageById(taskId) {
+  let taskIdToDelete = taskId;
+  console.log("deleting task", taskId);
+  if (taskId.startsWith("task-")) {
+    console.log("it contains");
+    taskIdToDelete = taskId.substring(5);
+    console.log("gonna delete", taskIdToDelete);
+  }
+  const storedTasks = getTasksFromStorage();
+  let index = 0;
+  for (task of storedTasks) {
+    if (task.taskId == taskId) {
+      break;
+    }
+    ++index;
+  }
+  storedTasks.splice(index, 1);
+  setTasksInStorage(storedTasks);
+}
 
 // creates a const structure that is ready for rendering as a Task Card and for storage
 function initTaskObject(title, dueDate, description, status) {
@@ -93,7 +123,6 @@ function addTask() {
     taskStatusInput.val()
   );
   storeTask(task);
-  setStoredTaskStatus(6, STATUS.DONE);
 }
 
 /////////////////////////
