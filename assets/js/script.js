@@ -56,14 +56,12 @@ function handleDrop(event, ui) {
   const droppedCard = ui.draggable;
   const dropTarget = this;
   console.log(`dropped Card ${droppedCard[0].id} on ${dropTarget.id}`);
-  //const taskData = getTaskFromStorageById(droppedCard[0].id);
+  const taskData = getTaskFromStorageById(droppedCard[0].id);
   deleteTaskFromStorageById(droppedCard[0].id);
 
-  // console.log("taskData", taskData);
-  // const taskCard = assembleTaskCard(taskData);
-  // console.log(taskCard);
-  // dropTarget.append(taskCard[0]);
-  // event.stopPropagation();
+  console.log("taskData", taskData);
+  storeTask(taskData);
+  event.stopPropagation();
   renderTaskList();
 }
 
