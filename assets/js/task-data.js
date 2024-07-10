@@ -60,6 +60,15 @@ function getTasksFromStorage() {
 function setTasksInStorage(taskArray) {
   localStorage.setItem(STORED_TASKS_NAME, JSON.stringify(taskArray));
 }
+// GETTER
+function getTaskFromStorageById(taskId) {
+  const storedTasks = getTasksFromStorage();
+  for (task of storedTasks) {
+    if (task.elementId === taskId) {
+      return task;
+    }
+  }
+}
 
 // creates a const structure that is ready for rendering as a Task Card and for storage
 function initTaskObject(title, dueDate, description, status) {
@@ -86,6 +95,7 @@ function storeTask(task) {
 
 // initializes a task object and stores it
 function addTask() {
+  console.log("here");
   const task = initTaskObject(
     taskTitleInput.val(),
     taskDueDateInput.val(),
@@ -93,7 +103,6 @@ function addTask() {
     taskStatusInput.val()
   );
   storeTask(task);
-  setStoredTaskStatus(6, STATUS.DONE);
 }
 
 /////////////////////////
