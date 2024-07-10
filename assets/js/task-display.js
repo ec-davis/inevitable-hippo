@@ -37,12 +37,10 @@ function assembleTaskCard(task) {
   cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
   taskCard.append(cardHeader, cardBody);
   //setUrgencyClass(task, taskCard);
-  taskCard
-    .draggable({
-      zIndex: 200,
-      helper: "clone",
-    })
-    .droppable();
+  taskCard.draggable({
+    zIndex: 200,
+    helper: "clone",
+  });
   taskCard.on("drop", handleDrop);
   return taskCard;
 }

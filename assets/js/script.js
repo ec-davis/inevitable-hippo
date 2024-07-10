@@ -54,15 +54,19 @@ function handleDeleteTask(event) {
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
   const droppedCard = ui.draggable;
-  const receivingColumn = this;
-  console.log(`dropped on ${receivingColumn.id}`);
+  const dropTarget = this;
+  console.log(`dropped on ${dropTarget.id}`);
   console.log("droppedCard", droppedCard);
   console.log(`droppedCard ${droppedCard[0].id}`);
   const taskData = getTaskFromStorageById(droppedCard[0].id);
-  console.log("taskData", taskData);
-  const taskCard = assembleTaskCard(taskData);
-  console.log(taskCard);
-  receivingColumn.append(taskCard[0]);
+  deleteTaskFromStorageById(droppedCard[0].id);
+
+  // console.log("taskData", taskData);
+  // const taskCard = assembleTaskCard(taskData);
+  // console.log(taskCard);
+  // dropTarget.append(taskCard[0]);
+  // event.stopPropagation();
+  renderTaskList();
 }
 
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker

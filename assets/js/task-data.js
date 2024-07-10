@@ -72,6 +72,13 @@ function getTaskFromStorageById(taskId) {
 
 // DELETE
 function deleteTaskFromStorageById(taskId) {
+  let taskIdToDelete = taskId;
+  console.log("deleting task", taskId);
+  if (taskId.startsWith("task-")) {
+    console.log("it contains");
+    taskIdToDelete = taskId.substring(5);
+    console.log("gonna delete", taskIdToDelete);
+  }
   const storedTasks = getTasksFromStorage();
   let index = 0;
   for (task of storedTasks) {
