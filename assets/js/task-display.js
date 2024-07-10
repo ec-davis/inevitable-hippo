@@ -31,7 +31,7 @@ function assembleTaskCard(task) {
   const cardDeleteBtn = $("<button>")
     .addClass("btn btn-danger delete")
     .text("Delete")
-    .attr("data-task-id", task.taskId);
+    .attr("data-taskId", task.taskId);
   cardDeleteBtn.on("click", handleDeleteTask);
 
   cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);

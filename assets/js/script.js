@@ -44,7 +44,14 @@ function handleAddTask(event) {
 }
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event) {}
+function handleDeleteTask(event) {
+  const cardToDelete = event.target;
+  console.log("cardToDelete", cardToDelete);
+  const id = cardToDelete.dataset.taskid;
+  console.log("cardToDelete.dataset.taskid", id);
+  deleteTaskFromStorageById(id);
+  renderTaskList();
+}
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {

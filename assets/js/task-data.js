@@ -70,6 +70,31 @@ function getTaskFromStorageById(taskId) {
   }
 }
 
+// DELETE
+function deleteTaskFromStorageById(taskId) {
+  const storedTasks = getTasksFromStorage();
+  let index = 0;
+  for (task of storedTasks) {
+    console.log(
+      "inspecting task",
+      index,
+      "with taskId",
+      task.taskId,
+      "does it match",
+      taskId
+    );
+    if (task.taskId == taskId) {
+      console.log("index", index, "matches id", task.taskId);
+      break;
+    }
+    ++index;
+  }
+  console.log("before", storedTasks);
+  storedTasks.splice(index, 1);
+  setTasksInStorage(storedTasks);
+  console.log("after", storedTasks);
+}
+
 // creates a const structure that is ready for rendering as a Task Card and for storage
 function initTaskObject(title, dueDate, description, status) {
   const newTaskId = getNextTaskId();
