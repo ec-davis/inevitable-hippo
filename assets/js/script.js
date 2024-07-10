@@ -8,23 +8,30 @@ const taskDueDateInput = $("#taskDueDateInput");
 const taskDescriptionInput = $("#taskDescriptionInput");
 const taskStatusInput = $("#taskStatusInput");
 
+// columns
+const columnTodoEl = $("#todo-cards");
+const columnWIPEl = $("#in-progress-cards");
+const columnDoneEl = $("#done-cards");
+
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
-// Todo: create a function to generate a unique task id
-function generateTaskId() {}
-
-// Todo: create a function to create a task card
-function createTaskCard(task) {}
-
 // Todo: create a function to render the task list and make cards draggable
-function renderTaskList() {}
+function renderTaskList() {
+  clearColumns();
+
+  const taskListArray = getTasksFromStorage();
+  const newTaskListArray = [];
+  for (task of taskListArray) {
+    appendTaskToColumn(task, newTaskListArray);
+  }
+  setTasksInStorage(newTaskListArray);
+}
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event) {
   event.preventDefault();
-  addTask();
 
   addTaskModal.modal("hide");
 }
@@ -38,4 +45,5 @@ function handleDrop(event, ui) {}
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
   saveTaskBtn.on("click", handleAddTask);
+  renderTaskList();
 });
