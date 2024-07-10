@@ -55,10 +55,8 @@ function handleDeleteTask(event) {
 function handleDrop(event, ui) {
   const droppedCard = ui.draggable;
   const dropTarget = this;
-  console.log(`dropped on ${dropTarget.id}`);
-  console.log("droppedCard", droppedCard);
-  console.log(`droppedCard ${droppedCard[0].id}`);
-  const taskData = getTaskFromStorageById(droppedCard[0].id);
+  console.log(`dropped Card ${droppedCard[0].id} on ${dropTarget.id}`);
+  //const taskData = getTaskFromStorageById(droppedCard[0].id);
   deleteTaskFromStorageById(droppedCard[0].id);
 
   // console.log("taskData", taskData);
