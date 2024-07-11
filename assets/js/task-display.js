@@ -1,7 +1,15 @@
+// clears tasks from columns before sorting them into columns
 function clearColumns() {
   columnToDoEl.text("");
   columnWIPEl.text("");
   columnDoneEl.text("");
+}
+
+// reset the modal dialog input fields
+function clearInputFields() {
+  taskTitleInput.val("");
+  taskDueDateInput.val("");
+  taskDescriptionInput.val("");
 }
 
 // - determines the target column by status
@@ -11,10 +19,11 @@ function appendTaskToColumn(task, updatedTaskListArray) {
   let column;
   if (task.status === STATUS.TODO) column = columnToDoEl;
   else if (task.status === STATUS.WIP) column = columnWIPEl;
-  else if (task.status === STATUS.DONE) column = columnDoneEl;
+  else column = columnDoneEl;
   const taskCard = assembleTaskCard(task);
-  const positionInColumn = column.children().length;
-  task.position = positionInColumn;
+  // const positionInColumn = column.children().length;
+  // task.position = positionInColumn;
+  setUrgencyClass(task, taskCard);
   column.append(taskCard);
   updatedTaskListArray.push(task);
 }
