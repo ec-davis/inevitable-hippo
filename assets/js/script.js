@@ -9,14 +9,23 @@ const taskDescriptionInput = $("#taskDescriptionInput");
 const taskStatusInput = $("#taskStatusInput");
 
 // columns
-const columnTodoEl = $("#todo-cards");
+const columnToDoEl = $("#to-do-cards");
 const columnWIPEl = $("#in-progress-cards");
 const columnDoneEl = $("#done-cards");
 
 function configureElements() {
-  columnDoneEl.droppable().draggable().on("drop", handleDrop);
-  columnTodoEl.droppable().draggable().on("drop", handleDrop);
-  columnWIPEl.droppable().draggable().on("drop", handleDrop);
+  columnToDoEl.droppable({
+    accept: ".draggable",
+    drop: handleDrop,
+  });
+  columnWIPEl.droppable({
+    accept: ".draggable",
+    drop: handleDrop,
+  });
+  columnDoneEl.droppable({
+    accept: ".draggable",
+    drop: handleDrop,
+  });
 }
 
 // Retrieve tasks and nextId from localStorage
@@ -59,7 +68,8 @@ function handleDrop(event, ui) {
   const taskData = getTaskFromStorageById(droppedCard[0].id);
   deleteTaskFromStorageById(droppedCard[0].id);
 
-  console.log("taskData", taskData);
+  const targetStatus = getTargetColumnStatus(dropTarget.id);
+  taskData.status = targetStatus;
   storeTask(taskData);
   event.stopPropagation();
   renderTaskList();

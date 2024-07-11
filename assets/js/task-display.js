@@ -1,5 +1,5 @@
 function clearColumns() {
-  columnTodoEl.text("");
+  columnToDoEl.text("");
   columnWIPEl.text("");
   columnDoneEl.text("");
 }
@@ -9,7 +9,7 @@ function clearColumns() {
 // = appends the taskCard to the target column
 function appendTaskToColumn(task, updatedTaskListArray) {
   let column;
-  if (task.status === STATUS.TODO) column = columnTodoEl;
+  if (task.status === STATUS.TODO) column = columnToDoEl;
   else if (task.status === STATUS.WIP) column = columnWIPEl;
   else if (task.status === STATUS.DONE) column = columnDoneEl;
   const taskCard = assembleTaskCard(task);
