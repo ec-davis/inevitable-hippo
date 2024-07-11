@@ -9,12 +9,12 @@ const taskDescriptionInput = $("#taskDescriptionInput");
 const taskStatusInput = $("#taskStatusInput");
 
 // columns
-const columnTodoEl = $("#to-do-cards");
+const columnToDoEl = $("#to-do-cards");
 const columnWIPEl = $("#in-progress-cards");
 const columnDoneEl = $("#done-cards");
 
 function configureElements() {
-  columnTodoEl.droppable({
+  columnToDoEl.droppable({
     accept: ".draggable",
     drop: handleDrop,
   });

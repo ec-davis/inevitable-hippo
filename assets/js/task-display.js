@@ -1,5 +1,5 @@
 function clearColumns() {
-  columnTodoEl.text("");
+  columnToDoEl.text("");
   columnWIPEl.text("");
   columnDoneEl.text("");
 }
@@ -9,10 +9,9 @@ function clearColumns() {
 // = appends the taskCard to the target column
 function appendTaskToColumn(task, updatedTaskListArray) {
   let column;
-  if (task.status === STATUS.TODO) column = columnTodoEl;
+  if (task.status === STATUS.TODO) column = columnToDoEl;
   else if (task.status === STATUS.WIP) column = columnWIPEl;
   else if (task.status === STATUS.DONE) column = columnDoneEl;
-  else console.log("ERRRRRRRRRRRRRRRROR", task.status);
   const taskCard = assembleTaskCard(task);
   const positionInColumn = column.children().length;
   task.position = positionInColumn;
@@ -28,7 +27,6 @@ function assembleTaskCard(task) {
   const cardHeader = $("<div>").addClass("card-header h4").text(task.title);
   const cardBody = $("<div>").addClass("card-body");
   const cardDescription = $("<p>").addClass("card-text").text(task.description);
-  const cardStatus = $("<p>").addClass("card-text").text(task.status);
   const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
   const cardDeleteBtn = $("<button>")
     .addClass("btn btn-danger delete")
@@ -36,7 +34,7 @@ function assembleTaskCard(task) {
     .attr("data-taskId", task.taskId);
   cardDeleteBtn.on("click", handleDeleteTask);
 
-  cardBody.append(cardDescription, cardDueDate, cardStatus, cardDeleteBtn);
+  cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
   taskCard.append(cardHeader, cardBody);
   //setUrgencyClass(task, taskCard);
   taskCard.draggable({
