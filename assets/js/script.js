@@ -14,9 +14,18 @@ const columnWIPEl = $("#in-progress-cards");
 const columnDoneEl = $("#done-cards");
 
 function configureElements() {
-  columnDoneEl.droppable().draggable().on("drop", handleDrop);
-  columnTodoEl.droppable().draggable().on("drop", handleDrop);
-  columnWIPEl.droppable().draggable().on("drop", handleDrop);
+  columnTodoEl.droppable({
+    accept: ".draggable",
+    drop: handleDrop,
+  });
+  columnWIPEl.droppable({
+    accept: ".draggable",
+    drop: handleDrop,
+  });
+  columnDoneEl.droppable({
+    accept: ".draggable",
+    drop: handleDrop,
+  });
 }
 
 // Retrieve tasks and nextId from localStorage

@@ -27,6 +27,7 @@ function assembleTaskCard(task) {
   const cardHeader = $("<div>").addClass("card-header h4").text(task.title);
   const cardBody = $("<div>").addClass("card-body");
   const cardDescription = $("<p>").addClass("card-text").text(task.description);
+  const cardStatus = $("<p>").addClass("card-text").text(task.status);
   const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
   const cardDeleteBtn = $("<button>")
     .addClass("btn btn-danger delete")
@@ -34,7 +35,7 @@ function assembleTaskCard(task) {
     .attr("data-taskId", task.taskId);
   cardDeleteBtn.on("click", handleDeleteTask);
 
-  cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
+  cardBody.append(cardDescription, cardDueDate, cardStatus, cardDeleteBtn);
   taskCard.append(cardHeader, cardBody);
   //setUrgencyClass(task, taskCard);
   taskCard.draggable({
