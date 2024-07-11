@@ -19,6 +19,42 @@ function appendTaskToColumn(task, updatedTaskListArray) {
   updatedTaskListArray.push(task);
 }
 
+function isPastDue(dueDate) {
+  return dueDate < new Date();
+}
+
+function isDueToday(dueDate) {
+  const today = new Date();
+  return (
+    dueDate.getDate() == today.getDate() &&
+    dueDate.getMonth() == today.getMonth() &&
+    dueDate.getFullYear() == today.getFullYear()
+  );
+}
+
+// Removes urgency classes for done tasks.
+// Else sets class according to due date. Note that we check isDueToday() before isPastDue().
+// This is for the case in which the due date is earlier today. In that case, we want
+// the class from isDueToday(), but isPastDue() would return true if it came before isDueToday()
+// Removes
+function setUrgencyClass(task, element) {
+  const dueDate = new Date(task.dueDate);
+
+  if (task.status === "done")
+    element
+      .removeClass("alert-info")
+      .removeClass("alert-warning")
+      .removeClass("alert-danger");
+  else if (isDueToday(dueDate)) {
+    element.removeClass("alert-info").addClass("alert-warning");
+  } else if (isPastDue(dueDate)) {
+    element
+      .removeClass("alert-info")
+      .removeClass("alert-warning")
+      .addClass("alert-danger");
+  } else element.addClass("alert-info");
+}
+
 // creates the task card HTML element
 function assembleTaskCard(task) {
   const taskCard = $(`<div id="${task.elementId}">`)
@@ -36,7 +72,7 @@ function assembleTaskCard(task) {
 
   cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
   taskCard.append(cardHeader, cardBody);
-  //setUrgencyClass(task, taskCard);
+  setUrgencyClass(task, taskCard);
   taskCard.draggable({
     zIndex: 200,
     helper: "clone",
