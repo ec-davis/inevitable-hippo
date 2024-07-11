@@ -20,15 +20,14 @@ function appendTaskToColumn(task, updatedTaskListArray) {
 }
 
 function isPastDue(dueDate) {
-  return dueDate < new Date();
+  return dayjs().isAfter(dueDate);
 }
 
 function isDueToday(dueDate) {
-  const today = new Date();
   return (
-    dueDate.getDate() == today.getDate() &&
-    dueDate.getMonth() == today.getMonth() &&
-    dueDate.getFullYear() == today.getFullYear()
+    dueDate.getDate() == dayjs().date() &&
+    dueDate.getMonth() == dayjs().month() &&
+    dueDate.getFullYear() == dayjs().year()
   );
 }
 
