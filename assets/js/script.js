@@ -6,7 +6,6 @@ const saveTaskBtn = $("#saveTaskBtn");
 const taskTitleInput = $("#taskTitleInput");
 const taskDueDateInput = $("#taskDueDateInput");
 const taskDescriptionInput = $("#taskDescriptionInput");
-const taskStatusInput = $("#taskStatusInput");
 
 // columns
 const columnToDoEl = $("#to-do-cards");
@@ -49,6 +48,7 @@ function handleAddTask(event) {
   event.preventDefault();
   addTask();
   addTaskModal.modal("hide");
+  clearInputFields();
   renderTaskList();
 }
 
@@ -64,7 +64,6 @@ function handleDeleteTask(event) {
 function handleDrop(event, ui) {
   const droppedCard = ui.draggable;
   const dropTarget = this;
-  console.log(`dropped Card ${droppedCard[0].id} on ${dropTarget.id}`);
   const taskData = getTaskFromStorageById(droppedCard[0].id);
   deleteTaskFromStorageById(droppedCard[0].id);
 
@@ -82,7 +81,6 @@ $(document).ready(function () {
     changeMonth: true,
     changeYear: true,
   });
-
   configureElements();
   renderTaskList();
 });

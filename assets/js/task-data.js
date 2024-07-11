@@ -29,15 +29,9 @@ function initStoredNextID() {
   let storedNextID = getStoredNextId();
 
   if (null == storedNextID) {
-    console.log(
-      "initStoredNextID() found stored nextId was null. Initializing to 1"
-    );
     setStoredNextId(1);
     return 1;
   } else {
-    console.log(
-      `initStoredNextID() found stored nextId ${storedNextID}, no need to initialize.`
-    );
     return storedNextID;
   }
 }
@@ -73,10 +67,8 @@ function getTaskFromStorageById(taskId) {
 // DELETE
 function deleteTaskFromStorageById(taskId) {
   let taskIdToDelete = taskId;
-  console.log("deleteTaskFromStorageById(taskId)", taskId);
   if (taskId.startsWith("task-")) {
     taskIdToDelete = taskId.substring(5);
-    console.log("gonna delete", taskIdToDelete);
   }
   const storedTasks = getTasksFromStorage();
   let index = 0;
@@ -120,8 +112,9 @@ function addTask() {
     taskTitleInput.val(),
     taskDueDateInput.val(),
     taskDescriptionInput.val(),
-    taskStatusInput.val()
+    STATUS.TODO
   );
+
   storeTask(task);
 }
 
