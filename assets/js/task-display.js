@@ -12,6 +12,7 @@ function appendTaskToColumn(task, updatedTaskListArray) {
   if (task.status === STATUS.TODO) column = columnTodoEl;
   else if (task.status === STATUS.WIP) column = columnWIPEl;
   else if (task.status === STATUS.DONE) column = columnDoneEl;
+  else console.log("ERRRRRRRRRRRRRRRROR", task.status);
   const taskCard = assembleTaskCard(task);
   const positionInColumn = column.children().length;
   task.position = positionInColumn;

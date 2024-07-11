@@ -128,6 +128,14 @@ function addTask() {
 /////////////////////////
 // TASK Status
 
+// returns the portion of a string before the last hyphen
+// this gets the status string from to-do-cards, in-progress-cards
+// and done-cards
+function getTargetColumnStatus(id) {
+  const pos = id.lastIndexOf("-");
+  return id.substring(0, pos);
+}
+
 // finds a task in storage and updates its status
 function setStoredTaskStatus(taskId, status) {
   const storedTasks = getTasksFromStorage();

@@ -9,7 +9,7 @@ const taskDescriptionInput = $("#taskDescriptionInput");
 const taskStatusInput = $("#taskStatusInput");
 
 // columns
-const columnTodoEl = $("#todo-cards");
+const columnTodoEl = $("#to-do-cards");
 const columnWIPEl = $("#in-progress-cards");
 const columnDoneEl = $("#done-cards");
 
@@ -68,7 +68,8 @@ function handleDrop(event, ui) {
   const taskData = getTaskFromStorageById(droppedCard[0].id);
   deleteTaskFromStorageById(droppedCard[0].id);
 
-  console.log("taskData", taskData);
+  const targetStatus = getTargetColumnStatus(dropTarget.id);
+  taskData.status = targetStatus;
   storeTask(taskData);
   event.stopPropagation();
   renderTaskList();
